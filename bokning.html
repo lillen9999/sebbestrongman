@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boka sebbe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgb(15,19,72);
+            border-radius: 25px;
+            padding : 10px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        h1 {
+            color: rgb(234,234,234);
+        }
+        h2{
+            color: rgb(234,234,234);
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgb(15,19,72);
+            border-radius: 25px;
+            padding : 10px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            float: center;
+            width: 50%;
+            margin-left: auto;  
+            margin-right: auto;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+            padding-right: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: rgb(15,19,72);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color:rgb(47, 47, 200);
+        }
+        body{
+            background:linear-gradient(rgb(15,19,72),rgb(234,234,234));
+        }
+        .confirmation {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+<h1>Boka Sebbe strongman</h1>
+</header>
+<article>
+<h2>Boka</h2>
+<form id="bookingForm">
+    <label for="name">Namn:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="number">Telefon nummer:</label>
+    <input type="tel" id="number" name="number" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="datetime">Booking Date and Time:</label>
+    <input type="datetime-local" id="datetime" name="datetime" required><br><br>
+
+    <button type="submit">Boka</button>
+</form>
+
+<div class="confirmation" id="confirmationPage">
+    <h2>boknings kvitto</h2>
+    <p><strong>Name:</strong> <span id="confirmName"></span></p>
+    <p><strong>Email:</strong> <span id="confirmEmail"></span></p>
+    <p><strong>Phone Number:</strong> <span id="confirmPhone"></span></p>
+    <p><strong>Booking Date and Time:</strong> <span id="confirmDatetime"></span></p>
+    <button onclick="editBooking()">Edit Booking</button>
+</div>
+</article>
+
+<script>
+    const form = document.getElementById('bookingForm');
+    const confirmationPage = document.getElementById('confirmationPage');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('number').value;
+        const datetime = document.getElementById('datetime').value;
+
+        // Display confirmation page
+        document.getElementById('confirmName').textContent = name;
+        document.getElementById('confirmEmail').textContent = email;
+        document.getElementById('confirmPhone').textContent = phone;
+        document.getElementById('confirmDatetime').textContent = datetime;
+
+        form.style.display = 'none';
+        confirmationPage.style.display = 'block';
+    });
+
+    function editBooking() {
+        // Go back to the form
+        form.style.display = 'block';
+        confirmationPage.style.display = 'none';
+    }
+</script>
+</body>
+</html>
